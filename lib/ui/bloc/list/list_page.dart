@@ -24,6 +24,7 @@ class _ListPageBlocState extends State<ListPageBloc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text("User list"),
         actions: [
           IconButton(
@@ -34,7 +35,37 @@ class _ListPageBlocState extends State<ListPageBloc> {
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: Container(),
+      body: Container(
+        child: BlocConsumer<ListBloc, ListState>(
+          listenWhen: (_, state) => state is ListError,
+          listener: (context, state) {
+
+          },
+          buildWhen: (_, state) => state is ListLoaded || state is ListInitial || state is ListLoading,
+          builder:  (context, state) {
+            if (state is Loading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is TodosLoaded) {
+              List<Todo> items = state.todos;
+              int itemCount = items.length;
+
+              return ListView.builder(
+                itemCount: itemCount,
+                itemBuilder: (context, index) {
+                  return TodoListItem(
+                    ObjectKey(items[index]),
+                    items[index],
+                  );
+                },
+              );
+            } else {
+              return Container();
+            }
+          },
+        )
+      ),
     );
   }
 }
