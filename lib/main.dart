@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_homework/network/data_source_interceptor.dart';
+import 'package:flutter_homework/ui/bloc/login/login_bloc.dart';
+import 'package:flutter_homework/ui/bloc/login/login_page.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,6 +46,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+      ),
+      home: BlocProvider(
+        create: (_) => LoginBloc(),
+        child: LoginPageBloc(),
       ),
       //DO NOT MODIFY
       navigatorObservers: GetIt.I<List<NavigatorObserver>>(),
