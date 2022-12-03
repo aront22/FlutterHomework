@@ -30,6 +30,16 @@ class LoginService{
       throw e.toString();
     }
   }
+
+  bool AutoLogin()
+  {
+    return sharedPreferences.containsKey("TOKEN");
+  }
+
+  void Logout()
+  {
+    sharedPreferences.remove("TOKEN");
+  }
 }
 
 final loginService = LoginService(GetIt.I<Dio>(), GetIt.I<SharedPreferences>());

@@ -23,5 +23,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         }
       },
     );
+    on<LoginAutoLoginEvent>((event, emit) async {
+      if(loginService.AutoLogin()) {
+          emit(LoginSuccess());
+      }
+    },);
   }
 }

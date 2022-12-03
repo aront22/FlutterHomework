@@ -31,10 +31,13 @@ class _LoginPageBlocState extends State<LoginPageBloc> {
           child: Form(
             key: _formKey,
             child: BlocConsumer<LoginBloc, LoginState> (
-              listenWhen: (_, state) => state is LoginError,
+              listenWhen: (_, state) => state is LoginError || state is LoginSuccess,
               listener: (context, state) {
                 if (state is LoginError) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+                }
+                if(state is LoginSuccess){
+                  Navigator.pushReplacementNamed(context, '/list');
                 }
               },
               buildWhen: (_, state) => state is LoginForm || state is LoginLoading,
@@ -71,7 +74,9 @@ class _LoginPageBlocState extends State<LoginPageBloc> {
                         Checkbox(
                             value: rememberMe,
                             onChanged: state is LoginLoading ? null :  (bool? newValue) {
-                              rememberMe = newValue ?? false;
+                              setState(() {
+                                rememberMe = newValue!;
+                              });
                             }
                         ),
                         const Text("Remember me")
