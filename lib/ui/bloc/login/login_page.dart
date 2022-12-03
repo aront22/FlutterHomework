@@ -55,7 +55,12 @@ class _LoginPageBlocState extends State<LoginPageBloc> {
                           border: OutlineInputBorder(),
                           labelText: 'Email',
                         ),
-                        validator: (value) => isEmail(value ?? "") ? null : "Invalid Email!",
+                        validator: (value) {
+                          if (value == null || value == "") {
+                            return null;
+                          }
+                          return isEmail(value) ? null : "Not an email!";
+                        },
                       ),
                     ),
                     TextFormField(
@@ -67,7 +72,12 @@ class _LoginPageBlocState extends State<LoginPageBloc> {
                         border: OutlineInputBorder(),
                         labelText: 'Password',
                       ),
-                      validator: (value) => isLength(value ?? "", 6) ? null : "Short password",
+                      validator: (value) {
+                      if (value == null || value == "") {
+                        return null;
+                      }
+                        return isLength(value, 6) ? null : "Short password!";
+                      },
                     ),
                     Row(
                       children: [

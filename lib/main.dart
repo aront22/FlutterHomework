@@ -50,20 +50,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (context) {
-          LoginBloc bloc = LoginBloc();
-          bloc.add(LoginAutoLoginEvent());
-          return bloc;
-          },
+        create: (context) => LoginBloc()..add(LoginAutoLoginEvent()),
         child: LoginPageBloc(),
       ),
       routes: {
         "/list": (context) => BlocProvider(
-          create: (_) {
-            ListBloc bloc = ListBloc();
-            bloc.add(ListLoadEvent());
-            return bloc;
-          },
+          create: (_) => ListBloc()..add(ListLoadEvent()),
           child: ListPageBloc(),
         ),
       },

@@ -38,7 +38,7 @@ class LoginService{
 
   void Logout()
   {
-    sharedPreferences.remove("TOKEN");
+    sharedPreferences.clear();
   }
 }
 
