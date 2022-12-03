@@ -59,7 +59,11 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/list": (context) => BlocProvider(
-          create: (_) => ListBloc(),
+          create: (_) {
+            ListBloc bloc = ListBloc();
+            bloc.add(ListLoadEvent());
+            return bloc;
+          },
           child: ListPageBloc(),
         ),
       },
