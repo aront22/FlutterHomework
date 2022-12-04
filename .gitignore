@@ -42,3 +42,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+test/screenshots/0-login-initial.png
+test/screenshots/1-login-error.png
+test/screenshots/2-login-loading.png
+test/screenshots/3-login-wrong-user.png
+test/screenshots/4-list-initial.png
+test/screenshots/5-list-dragged.png
+test/screenshots/6-list-autologin.png
+test/screenshots/7-login-logout.png
