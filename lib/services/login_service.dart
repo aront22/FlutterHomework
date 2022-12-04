@@ -18,7 +18,7 @@ class LoginService{
       });
       Map<String, String> result = response.data as Map<String, String>;
       String token = result["token"]!;
-      dio.options.headers.update("Authorization", (value) => "Bearer $token", ifAbsent: () => "Bearer $token");
+      dio.options.headers["Authorization"] = "Bearer $token";
       if(rememberMe) {
         await sharedPreferences.setString("TOKEN", token);
       }
@@ -34,7 +34,13 @@ class LoginService{
 
   bool AutoLogin()
   {
-    return sharedPreferences.containsKey("TOKEN");
+    if(sharedPreferences.containsKey("TOKEN")){
+      var token = sharedPreferences.getString("TOKEN");
+      dio.options.headers["Authorization"] = "Bearer $token";
+      return true;
+    }
+
+    return false;
   }
 
   void Logout()
