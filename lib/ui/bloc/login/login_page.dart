@@ -20,6 +20,7 @@ class _LoginPageBlocState extends State<LoginPageBloc> {
   @override
   void initState() {
     super.initState();
+    super.context.read<LoginBloc>().add(LoginAutoLoginEvent());
   }
 
   @override

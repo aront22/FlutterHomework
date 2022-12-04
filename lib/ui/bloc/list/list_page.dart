@@ -20,6 +20,7 @@ class _ListPageBlocState extends State<ListPageBloc> {
   @override
   void initState() {
     super.initState();
+    super.context.read<ListBloc>().add(ListLoadEvent());
   }
 
   @override

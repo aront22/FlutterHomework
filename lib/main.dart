@@ -53,12 +53,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (context) => LoginBloc()..add(LoginAutoLoginEvent()),
+        create: (context) => LoginBloc(),
         child: LoginPageBloc(),
       ),
       routes: {
         "/list": (context) => BlocProvider(
-          create: (_) => ListBloc()..add(ListLoadEvent()),
+          create: (_) => ListBloc(),
           child: ListPageBloc(),
         ),
       },
