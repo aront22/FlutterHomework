@@ -11,9 +11,18 @@ class UserService{
   UserService(this.dio, this.sharedPreferences);
 
   Future<List<UserItem>> GetUsers() async {
-    var response = await dio.get("/users");
-    var list = response.data as List<Map<String, String>>;
+    try
+    {
+      var response = await dio.get("/users");
+      var list = response.data as List<dynamic>;
 
-    return list.map((e) => UserItem(e["name"]!, e["avatarUrl"]!)).toList();
+      return list.map((e) => UserItem(e["name"]!, e["avatarUrl"]!)).toList();
+    }
+    catch (e) {
+      if(e is DioError){
+        throw e.response!.data["message"];
+      }
+      throw e.toString();
+    }
   }
 }

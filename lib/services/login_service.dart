@@ -16,7 +16,7 @@ class LoginService{
         "email": email,
         "password": password
       });
-      Map<String, String> result = response.data as Map<String, String>;
+      Map<String, dynamic> result = response.data as Map<String, dynamic>;
       String token = result["token"]!;
       dio.options.headers["Authorization"] = "Bearer $token";
       if(rememberMe) {
