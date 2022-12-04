@@ -87,15 +87,15 @@ class UserListItem extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: 80,
-            height: 80,
+            width: 10,
+            height: 10,
             child: Image.network(user.avatarUrl)
           ),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
             child: Text(
               user.name,
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 10),
             ),
           )
         ],
