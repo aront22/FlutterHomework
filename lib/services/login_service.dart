@@ -18,8 +18,9 @@ class LoginService{
       });
       Map<String, String> result = response.data as Map<String, String>;
       String token = result["token"]!;
+      dio.options.headers.update("Authorization", (value) => "Bearer $token", ifAbsent: () => "Bearer $token");
       if(rememberMe) {
-        sharedPreferences.setString("TOKEN", token);
+        await sharedPreferences.setString("TOKEN", token);
       }
       return token;
     }
@@ -41,5 +42,3 @@ class LoginService{
     sharedPreferences.clear();
   }
 }
-
-final loginService = LoginService(GetIt.I<Dio>(), GetIt.I<SharedPreferences>());

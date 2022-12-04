@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_homework/network/data_source_interceptor.dart';
+import 'package:flutter_homework/services/login_service.dart';
+import 'package:flutter_homework/services/user_service.dart';
 import 'package:flutter_homework/ui/bloc/list/list_bloc.dart';
 import 'package:flutter_homework/ui/bloc/list/list_page.dart';
 import 'package:flutter_homework/ui/bloc/login/login_bloc.dart';
@@ -36,7 +38,8 @@ Future configureFixDependencies() async {
 
 //Add custom dependencies if necessary
 Future configureCustomDependencies() async {
-
+  GetIt.I.registerSingleton(LoginService(GetIt.I<Dio>(), GetIt.I<SharedPreferences>()));
+  GetIt.I.registerSingleton(UserService(GetIt.I<Dio>(), GetIt.I<SharedPreferences>()));
 }
 
 class MyApp extends StatelessWidget {

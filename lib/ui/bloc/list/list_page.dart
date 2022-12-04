@@ -31,6 +31,7 @@ class _ListPageBlocState extends State<ListPageBloc> {
         actions: [
           IconButton(
               onPressed: () {
+                var loginService = GetIt.I<LoginService>();
                 loginService.Logout();
                 Navigator.pushReplacementNamed(context, "/");
               },
